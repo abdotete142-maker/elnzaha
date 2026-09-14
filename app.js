@@ -24,6 +24,7 @@ const menuItems = [
   // الشألباظ
   { id: 17, name: 'الشألباظ فينو',           price: 15,   img: 'shaqlapaz.jpeg' },
   { id: 19, name: 'بطاطس سوري',              price: 20,   img: 'btates_sory.jpeg' },
+  { id: 26, name: 'بطاطس موتزريلا سوري',    price: 30,   img: 'modzrilla.jpg' },
   // وجبات
   { id: 21, name: 'وجبة فراخ',               price: 99,   img: 'wferak.jpeg',   desc: 'رز بسمتي + ربع فرخة مشوية + مخلل' },
   { id: 22, name: 'وجبة كفتة',               price: 99,   img: 'Screenshot 2026-09-14 191805.png', desc: 'رز بسمتي + 5 كفتة + مخلل' },
