@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مطعم النزاهة</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <img src="logo.jpeg" alt="لوجو مطعم النزاهة" class="logo" />
+      <div class="header-text">
+        <h1>مطعم النزاهة</h1>
+        <p>أكل بيتي بطعم أصلي</p>
+      </div>
+      <button class="cart-btn" onclick="toggleCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <span class="shape s1"></span>
+      <span class="shape s2"></span>
+      <span class="shape s3"></span>
+      <span class="shape s4"></span>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-fire"></i> الأكل الأصلي هنا</div>
+      <h2>أهلاً بيك في<br/><span>مطعم النزاهة</span></h2>
+      <p>اختار اللي يعجبك وإحنا نوصّهولك على طول</p>
+      <a href="#menuGrid" class="hero-cta">اطلب دلوقتي <i class="fa-solid fa-arrow-left"></i></a>
+    </div>
+  </section>
+
+  <!-- ===== SCHOOL OFFER BANNER ===== -->
+  <div class="offer-banner">
+    <i class="fa-solid fa-gift"></i>
+    عرض المدارس: اشتري بـ 100 جنيه أو أكتر واحصل على ساندوتش شقلباظ <strong>هدية!</strong>
+  </div>
+
+  <!-- ===== MENU ===== -->
+  <section class="menu-section" id="menuGrid-wrap">
+    <div class="section-header">
+      <h2 class="section-title"><i class="fa-solid fa-utensils"></i> قائمة الطعام</h2>
+      <p class="section-sub">أصناف طازة يومياً بأيدي أمهر الطباخين</p>
+    </div>
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="menuSearch" class="search-input" placeholder="ابحث عن وجبة..." oninput="filterMenu(this.value)" />
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <p class="no-results" id="noResults" style="display:none;">مفيش نتايج لـ "<span id="searchTerm"></span>"</p>
+  </section>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>سلة الطلبات</h3>
+      <button onclick="toggleCart()" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="empty-cart">السلة فاضية دلوقتي</p>
+    </div>
+    <div class="cart-footer">
+      <div class="gift-notice" id="giftNotice" style="display:none;">
+        <i class="fa-solid fa-gift"></i> تهانينا! هتاخد ساندوتش شقلباظ هدية 🎉
+      </div>
+      <div class="cart-total">
+        المجموع: <span id="cartTotal">0</span> جنيه
+      </div>
+      <button class="confirm-btn" onclick="openOrderPopup()">تأكيد الطلب</button>
+    </div>
+  </aside>
+
+  <!-- ===== ORDER POPUP ===== -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <button class="close-btn popup-close" onclick="closeOrderPopup()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="popup-icon"><i class="fa-solid fa-motorcycle"></i></div>
+      <h3>بيانات التوصيل</h3>
+      <form id="orderForm" onsubmit="sendOrder(event)">
+        <div class="form-group">
+          <label>الاسم</label>
+          <input type="text" id="clientName" placeholder="اسمك إيه؟" required />
+        </div>
+        <div class="form-group">
+          <label>رقم الموبايل</label>
+          <input type="tel" id="clientPhone" placeholder="رقم موبايلك" required />
+        </div>
+        <div class="form-group">
+          <label>العنوان بالتفصيل</label>
+          <textarea id="clientAddress" placeholder="الشارع، الحي، المحافظة..." rows="3" required></textarea>
+        </div>
+        <button type="submit" class="confirm-btn">
+          <i class="fa-brands fa-whatsapp"></i> إرسال الطلب على واتساب
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews-section">
+    <div class="section-header">
+      <div class="reviews-eyebrow"><i class="fa-solid fa-star"></i> آراء حقيقية</div>
+      <h2 class="section-title reviews-title">ناس جربت وبتحكي</h2>
+      <p class="section-sub">أكتر من 500 عميل راضي عن خدمتنا</p>
+    </div>
+
+    <div class="reviews-stats">
+      <div class="stat-box">
+        <span class="stat-num">4.9</span>
+        <div class="stat-stars">★★★★★</div>
+        <span class="stat-label">متوسط التقييم</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">500+</span>
+        <div class="stat-stars" style="color:var(--accent)">🛵</div>
+        <span class="stat-label">طلب تم توصيله</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">98%</span>
+        <div class="stat-stars" style="color:#25d366">✔</div>
+        <span class="stat-label">رضا العملاء</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar av1">م</div>
+          <div>
+            <div class="review-name">محمد أحمد</div>
+            <div class="review-loc"><i class="fa-solid fa-location-dot"></i> الحاج محمد</div>
+          </div>
+          <div class="review-stars-badge">★ 5.0</div>
+        </div>
+        <p class="review-text">الأكل طعمه حلو جدًا ووصل سخن وفي معاده. الكبدة كانت ممتازة والتجربة كلها تستاهل.</p>
+        <div class="review-footer">
+          <span class="review-item-tag"><i class="fa-solid fa-utensils"></i> كبدة</span>
+          <span class="review-date">منذ 3 أيام</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar av2">ن</div>
+          <div>
+            <div class="review-name">نورا سامي</div>
+            <div class="review-loc"><i class="fa-solid fa-location-dot"></i> الطابيه</div>
+          </div>
+          <div class="review-stars-badge">★ 5.0</div>
+        </div>
+        <p class="review-text">الشاورما بتاعتهم بجد مختلفة، الخبز طازة والصوص تحفة. هطلب تاني بكره بالتأكيد 🔥</p>
+        <div class="review-footer">
+          <span class="review-item-tag"><i class="fa-solid fa-utensils"></i> شاورما</span>
+          <span class="review-date">منذ أسبوع</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar av3">ع</div>
+          <div>
+            <div class="review-name">عمر خالد</div>
+            <div class="review-loc"><i class="fa-solid fa-location-dot"></i>  نشأت</div>
+          </div>
+          <div class="review-stars-badge">★ 4.8</div>
+        </div>
+        <p class="review-text">اتطلبت وجبة كاملة وكانت تستاهل كل قرش. الكمية كويسة والأكل نضيف ومضبوط في التوابل.</p>
+        <div class="review-footer">
+          <span class="review-item-tag"><i class="fa-solid fa-utensils"></i> وجبات</span>
+          <span class="review-date">منذ أسبوعين</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar av4">س</div>
+          <div>
+            <div class="review-name">سارة علي</div>
+            <div class="review-loc"><i class="fa-solid fa-location-dot"></i> الطابيه</div>
+          </div>
+          <div class="review-stars-badge">★ 5.0</div>
+        </div>
+        <p class="review-text">البرجر كان لذيذ جداً والبانيه خفيف ومقرمش. خدمة توصيل سريعة وبسعر معقول جداً.</p>
+        <div class="review-footer">
+          <span class="review-item-tag"><i class="fa-solid fa-utensils"></i> برجر + بانيه</span>
+          <span class="review-date">منذ 5 أيام</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar av5">ك</div>
+          <div>
+            <div class="review-name">كريم مصطفى</div>
+            <div class="review-loc"><i class="fa-solid fa-location-dot"></i> الحاج محمد</div>
+          </div>
+          <div class="review-stars-badge">★ 5.0</div>
+        </div>
+        <p class="review-text">الكفتة بالسلطة ربنا يبارك، الكفتة طرية والسلطة طازة. المطعم ده بقى الـ go-to بتاعي.</p>
+        <div class="review-footer">
+          <span class="review-item-tag"><i class="fa-solid fa-utensils"></i> كفتة بالسلطة</span>
+          <span class="review-date">منذ يومين</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar av6">ه</div>
+          <div>
+            <div class="review-name">هناء رضا</div>
+            <div class="review-loc"><i class="fa-solid fa-location-dot"></i> الطابيه</div>
+          </div>
+          <div class="review-stars-badge">★ 4.9</div>
+        </div>
+        <p class="review-text">أول مرة أطلب وهيبقى مش الأخير. السدق كان مختلف عن أي حتة تانية، بيبان عليه الاهتمام.</p>
+        <div class="review-footer">
+          <span class="review-item-tag"><i class="fa-solid fa-utensils"></i> سدق</span>
+          <span class="review-date">منذ 4 أيام</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.jpeg" alt="النزاهة" class="footer-logo" />
+        <span>مطعم النزاهة</span>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1E3khueKRN/" target="_blank" class="social-btn fb">
+          <i class="fa-brands fa-facebook-f"></i> تابعنا على فيسبوك
+        </a>
+        <a href="https://wa.me/201040244975" target="_blank" class="social-btn wa">
+          <i class="fa-brands fa-whatsapp"></i> واتساب
+        </a>
+        <a href="https://vm.tiktok.com/ZS9SgXStSvQYo-MLYKE/" target="_blank" class="social-btn tt">
+          <i class="fa-brands fa-tiktok"></i> تيك توك
+        </a>
+      </div>
+      <p class="footer-copy">© 2026 مطعم النزاهة — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/201040244975" target="_blank" class="wa-float">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()" />
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
