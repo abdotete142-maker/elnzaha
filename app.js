@@ -126,7 +126,6 @@ function addToCart(id) {
   document.getElementById(`qty-${id}`).textContent = 1;
 
   updateCartUI();
-  openCart();
 
   // bump animation on cart button
   const btn = document.querySelector('.cart-btn');
