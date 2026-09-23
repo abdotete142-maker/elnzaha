@@ -549,6 +549,20 @@ header {
   color: var(--text-muted);
 }
 
+.menu-card.unavailable {
+  opacity: 0.72;
+}
+
+.unavailable-label {
+  width: 100%;
+  color: var(--text-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+}
+
 .menu-card-footer {
   padding: 12px 18px 18px;
   display: flex;

@@ -4,9 +4,9 @@
 const menuItems = [
   // كبدة
   { id: 1,  name: 'كبدة فينو',              price: 17.5, img: 'kepda_fino.jpeg' },
-  { id: 2,  name: 'كبدة شامي',              price: 17.5, img: 'kepda_shamy.jpeg' },
+  { id: 2,  name: 'كبدة شامي',              price: 20,   img: 'kepda_shamy.jpeg' },
   // سدق
-  { id: 4,  name: 'سدق فينو',               price: 20,   img: 'seduq_fino.jfif' },
+  { id: 4,  name: 'سدق فينو',               price: 17.5, img: 'seduq_fino.jfif' },
   { id: 5,  name: 'سدق شامي',               price: 20,   img: 'photo.webp' },
   { id: 6,  name: 'سدق سوري',               price: 30,   img: 'seduq_sory.jpeg' },
   // شاورما
@@ -21,15 +21,16 @@ const menuItems = [
   { id: 13, name: 'بانيه فينو',              price: 20,   img: 'bane_shamy.jpg' },
   // برجر — بوكس واحد بس
   { id: 16, name: 'برجر',                    price: 20,   img: 'burger.jpg' },
+  { id: 27, name: 'برجر بالجبنة الشيدر',    price: 40,   img: 'new_burger.jpeg' },
   // الشألباظ
   { id: 17, name: 'الشألباظ فينو',           price: 15,   img: 'shaqlapaz.jpeg' },
   { id: 19, name: 'بطاطس سوري',              price: 20,   img: 'btates_sory.jpeg' },
   { id: 26, name: 'بطاطس موتزريلا سوري',    price: 30,   img: 'modzrilla.jpg' },
   // وجبات
-  { id: 21, name: 'وجبة فراخ',               price: 99,   img: 'wferak.jpeg',   desc: 'رز بسمتي + ربع فرخة مشوية + مخلل' },
-  { id: 22, name: 'وجبة كفتة',               price: 99,   img: 'Screenshot 2026-09-14 191805.png', desc: 'رز بسمتي + 5 كفتة + مخلل' },
-  { id: 25, name: '5 كفتة بالسلطة',          price: 50,   img: '5kofta.jpeg', desc: '5 كفتة + سلطة + علبة طحينة' },
-  { id: 24, name: 'ربع فرخة',                price: 50,   img: 'rob3_farkha.jpeg' },
+  { id: 21, name: 'وجبة فراخ',               price: 99,   available: false, img: 'wferak.jpeg',   desc: 'رز بسمتي + ربع فرخة مشوية + مخلل' },
+  { id: 22, name: 'وجبة كفتة',               price: 99,   available: false, img: 'Screenshot 2026-09-14 191805.png', desc: 'رز بسمتي + 5 كفتة + مخلل' },
+  { id: 25, name: '5 كفتة بالسلطة',          price: 50,   available: false, img: '5kofta.jpeg', desc: '5 كفتة + سلطة + علبة طحينة' },
+  { id: 24, name: 'ربع فرخة',                price: 50,   available: false, img: 'rob3_farkha.jpeg' },
 ];
 
 // qty per item (state)
@@ -49,11 +50,11 @@ function renderMenu() {
   menuItems.forEach((item, index) => {
     const hasImg = item.img && item.img !== '';
     const card = document.createElement('div');
-    card.className = 'menu-card';
+    card.className = `menu-card${item.available === false ? ' unavailable' : ''}`;
     card.style.animationDelay = `${index * 0.06}s`;
     card.innerHTML = `
       <div class="menu-card-img" ${hasImg ? `onclick="openLightbox('${item.img}','${item.name}')" style="cursor:zoom-in;"` : ''}>
-        <span class="card-price-tag">${formatPrice(item.price)} جنيه</span>
+        <span class="card-price-tag">${item.available === false ? 'غير متوفر حاليا' : `${formatPrice(item.price)} جنيه`}</span>
         ${hasImg
           ? `<img src="${item.img}" alt="${item.name}" style="display:block;" />
              <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> اضغط للعرض</span>`
@@ -66,17 +67,19 @@ function renderMenu() {
       <div class="menu-card-body">
         <div class="menu-card-name">${item.name}</div>
         ${item.desc ? `<div class="menu-card-desc"><i class="fa-solid fa-circle-check"></i> ${item.desc}</div>` : ''}
-        <div class="menu-card-price-label">${formatPrice(item.price)} جنيه</div>
+        <div class="menu-card-price-label">${item.available === false ? 'غير متوفر حاليا' : `${formatPrice(item.price)} جنيه`}</div>
       </div>
       <div class="menu-card-footer">
-        <div class="qty-ctrl">
-          <button onclick="changeQty(${item.id}, -1)">−</button>
-          <span id="qty-${item.id}">1</span>
-          <button onclick="changeQty(${item.id}, 1)">+</button>
-        </div>
-        <button class="add-btn" onclick="addToCart(${item.id})">
-          <i class="fa-solid fa-plus"></i> أضف
-        </button>
+        ${item.available === false
+          ? '<span class="unavailable-label">غير متوفر حاليا</span>'
+          : `<div class="qty-ctrl">
+              <button onclick="changeQty(${item.id}, -1)">−</button>
+              <span id="qty-${item.id}">1</span>
+              <button onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+            <button class="add-btn" onclick="addToCart(${item.id})">
+              <i class="fa-solid fa-plus"></i> أضف
+            </button>`}
       </div>
     `;
     grid.appendChild(card);
@@ -112,6 +115,7 @@ function changeQty(id, delta) {
 // ===========================
 function addToCart(id) {
   const item = menuItems.find(i => i.id === id);
+  if (!item || item.available === false) return;
   const qty = quantities[id];
 
   const existing = cart.find(c => c.id === id);
