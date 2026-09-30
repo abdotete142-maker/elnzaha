@@ -1553,20 +1553,24 @@ footer {
 /* zoom icon on card image */
 .menu-card-img .zoom-hint {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.55);
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.78);
   color: #fff;
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
   z-index: 3;
   opacity: 0;
   transition: opacity 0.2s;
   pointer-events: none;
 }
 
-.menu-card:hover .zoom-hint { opacity: 1; }
+.menu-card-img:hover .zoom-hint { opacity: 1; }

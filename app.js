@@ -21,8 +21,7 @@ const menuItems = [
   { id: 13, name: 'بانيه فينو',              price: 20,   img: 'bane_shamy.jpg' },
   // برجر — بوكس واحد بس
   { id: 16, name: 'برجر',                    price: 20,   img: 'burger.jpg' },
-  { id: 27, name: 'برجر بالجبنة الشيدر',    price: 40,   img: 'new_burger.jpeg' },
-  { id: 35, name: 'سماش برجر',               price: 40,   img: 'smashburger.jpeg' },
+  { id: 47, name: 'برجر دوبل بالشيدر',       price: 40,   img: 'burger_double.jpeg' },
   // الشألباظ
   { id: 17, name: 'الشألباظ فينو',           price: 15,   img: 'shaqlapaz.jpeg' },
   { id: 19, name: 'بطاطس سوري',              price: 20,   img: 'btates_sory.jpeg' },
@@ -91,7 +90,7 @@ function renderMenu() {
         <span class="card-price-tag">${item.available === false ? 'غير متوفر حاليا' : `${formatPrice(item.price)} جنيه`}</span>
         ${hasImg
           ? `<img src="${item.img}" alt="${item.name}" style="display:block;" />
-             <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> اضغط للعرض</span>`
+             <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> اضغط لعرض الأوردر</span>`
           : `<div class="img-placeholder">
                <i class="fa-solid fa-utensils"></i>
                <span>${item.name}</span>
