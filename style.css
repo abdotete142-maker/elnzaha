@@ -475,6 +475,47 @@ header {
   gap: 24px;
 }
 
+.menu-categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 920px;
+  margin: -12px auto 30px;
+}
+
+.menu-category-btn {
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.menu-category-btn:hover,
+.menu-category-btn.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.menu-category-btn:focus-visible {
+  outline: 3px solid rgba(224,90,10,0.28);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .menu-categories { gap: 6px; }
+  .menu-category-btn { min-height: 38px; padding: 7px 12px; font-size: 0.85rem; }
+}
+
 /* ===========================
    MENU CARD
 =========================== */

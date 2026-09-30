@@ -62,6 +62,16 @@
       <input type="text" id="menuSearch" class="search-input" placeholder="البحث عن اصناف" oninput="filterMenu(this.value)" />
       <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
     </div>
+    <div class="menu-categories" role="group" aria-label="أقسام قائمة الطعام">
+      <button class="menu-category-btn active" data-category="all" aria-pressed="true" onclick="setMenuCategory('all')">الكل</button>
+      <button class="menu-category-btn" data-category="sandwiches" aria-pressed="false" onclick="setMenuCategory('sandwiches')">السندوتشات</button>
+      <button class="menu-category-btn" data-category="burgers" aria-pressed="false" onclick="setMenuCategory('burgers')">البرجر</button>
+      <button class="menu-category-btn" data-category="pasta" aria-pressed="false" onclick="setMenuCategory('pasta')">المكرونة</button>
+      <button class="menu-category-btn" data-category="potatoes" aria-pressed="false" onclick="setMenuCategory('potatoes')">البطاطس</button>
+      <button class="menu-category-btn" data-category="extras" aria-pressed="false" onclick="setMenuCategory('extras')">الإضافات</button>
+      <button class="menu-category-btn" data-category="drinks" aria-pressed="false" onclick="setMenuCategory('drinks')">المشروبات</button>
+      <button class="menu-category-btn" data-category="meals" aria-pressed="false" onclick="setMenuCategory('meals')">الوجبات</button>
+    </div>
     <div class="menu-grid" id="menuGrid"></div>
     <p class="no-results" id="noResults" style="display:none;">مفيش نتايج لـ "<span id="searchTerm"></span>"</p>
   </section>

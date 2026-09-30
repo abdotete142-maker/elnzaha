@@ -61,6 +61,17 @@ menuItems.forEach(item => { quantities[item.id] = 1; });
 
 // cart state
 let cart = [];
+let selectedCategory = 'all';
+
+function getMenuCategory(item) {
+  if (item.name.includes('برجر')) return 'burgers';
+  if (item.name.startsWith('مكرونة')) return 'pasta';
+  if (item.name.startsWith('بطاطس')) return 'potatoes';
+  if (item.name.startsWith('إضافة') || item.name.includes('شيبس') || item.name.includes('V7') || item.name.includes('مياه')) return 'extras';
+  if (item.name.startsWith('بيبسي')) return 'drinks';
+  if (item.name.startsWith('وجبة') || item.name.startsWith('5 كفتة') || item.name.startsWith('ربع فرخة')) return 'meals';
+  return 'sandwiches';
+}
 
 // ===========================
 // RENDER MENU
@@ -73,6 +84,7 @@ function renderMenu() {
     const hasImg = item.img && item.img !== '';
     const card = document.createElement('div');
     card.className = `menu-card${item.available === false ? ' unavailable' : ''}`;
+    card.dataset.category = getMenuCategory(item);
     card.style.animationDelay = `${index * 0.06}s`;
     card.innerHTML = `
       <div class="menu-card-img" ${hasImg ? `onclick="openLightbox('${item.img}','${item.name}')" style="cursor:zoom-in;"` : ''}>
@@ -308,9 +320,9 @@ function sendOrder(e) {
 
 // ===========================
 // SEARCH — Fuzzy
-// ===========================
 
 // normalize Arabic: remove diacritics, normalize alef/ya/ha variants
+
 function normalizeAr(str) {
   return str
     .replace(/[\u064B-\u065F]/g, '')   // tashkeel
@@ -361,7 +373,8 @@ function filterMenu(query) {
 
   cards.forEach(card => {
     const name = card.querySelector('.menu-card-name').textContent;
-    const isMatch = fuzzyMatch(name, q);
+    const categoryMatch = selectedCategory === 'all' || card.dataset.category === selectedCategory;
+    const isMatch = categoryMatch && fuzzyMatch(name, q);
     card.style.display = isMatch ? '' : 'none';
     if (isMatch) {
       found++;
@@ -380,6 +393,16 @@ function filterMenu(query) {
 
   noResults.style.display = (q && found === 0) ? 'block' : 'none';
   if (q && found === 0) termEl.textContent = q;
+}
+
+function setMenuCategory(category) {
+  selectedCategory = category;
+  document.querySelectorAll('.menu-category-btn').forEach(button => {
+    const isActive = button.dataset.category === category;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+  filterMenu(document.getElementById('menuSearch').value);
 }
 
 function clearSearch() {
