@@ -44,10 +44,11 @@
     </div>
   </section>
 
-  <!-- ===== SCHOOL OFFER BANNER ===== -->
+  <!-- ===== ORDER OFFER ===== -->
   <div class="offer-banner">
     <i class="fa-solid fa-gift"></i>
-    عرض المدارس: اشتري بـ 100 جنيه أو أكتر واحصل على ساندوتش شقلباظ <strong>هدية!</strong>
+    اشتري بـ 150 جنيه أو أكتر واحصل على كانز بيبسي <strong>هدية!</strong>
+    <span>التوصيل متاح في نشأت والطابية والحاج محمد فقط</span>
   </div>
 
   <!-- ===== MENU ===== -->
@@ -77,8 +78,9 @@
     </div>
     <div class="cart-footer">
       <div class="gift-notice" id="giftNotice" style="display:none;">
-        <i class="fa-solid fa-gift"></i> تهانينا! هتاخد ساندوتش شقلباظ هدية 🎉
+        <i class="fa-solid fa-gift"></i> تهانينا! هتاخد كانز بيبسي هدية
       </div>
+      <div class="minimum-order-notice" id="minimumOrderNotice">الحد الأدنى للتوصيل 70 جنيه</div>
       <div class="cart-total">
         المجموع: <span id="cartTotal">0</span> جنيه
       </div>
@@ -102,8 +104,17 @@
           <input type="tel" id="clientPhone" placeholder="رقم موبايلك" required />
         </div>
         <div class="form-group">
+          <label for="deliveryArea">منطقة التوصيل</label>
+          <select id="deliveryArea" required>
+            <option value="" disabled selected>اختار منطقة التوصيل</option>
+            <option value="نشأت">نشأت</option>
+            <option value="الطابية">الطابية</option>
+            <option value="الحاج محمد">الحاج محمد</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label>العنوان بالتفصيل</label>
-          <textarea id="clientAddress" placeholder="الشارع، الحي، المحافظة..." rows="3" required></textarea>
+          <textarea id="clientAddress" placeholder="الشارع أو علامة مميزة..." rows="3" required></textarea>
         </div>
         <button type="submit" class="confirm-btn">
           <i class="fa-brands fa-whatsapp"></i> إرسال الطلب على واتساب

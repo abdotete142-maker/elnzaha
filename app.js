@@ -22,10 +22,32 @@ const menuItems = [
   // برجر — بوكس واحد بس
   { id: 16, name: 'برجر',                    price: 20,   img: 'burger.jpg' },
   { id: 27, name: 'برجر بالجبنة الشيدر',    price: 40,   img: 'new_burger.jpeg' },
+  { id: 35, name: 'سماش برجر',               price: 40,   img: 'smashburger.jpeg' },
   // الشألباظ
   { id: 17, name: 'الشألباظ فينو',           price: 15,   img: 'shaqlapaz.jpeg' },
   { id: 19, name: 'بطاطس سوري',              price: 20,   img: 'btates_sory.jpeg' },
   { id: 26, name: 'بطاطس موتزريلا سوري',    price: 30,   img: 'modzrilla.jpg' },
+  // مكرونة
+  { id: 28, name: 'مكرونة سادة',               price: 15,   img: 'Msada.jpeg' },
+  { id: 29, name: 'مكرونة بطاطس',              price: 25,   img: 'mpotato.jpeg' },
+  { id: 30, name: 'مكرونة بالصوصات',           price: 25,   img: 'msoce.jpeg' },
+  { id: 31, name: 'مكرونة كبدة',               price: 30,   img: 'mkepda.jpeg' },
+  { id: 32, name: 'مكرونة سدق',                price: 35,   img: 'mseduq.jpeg' },
+  { id: 33, name: 'مكرونة لحمة',               price: 45,   img: 'mlahma.jpeg' },
+  { id: 41, name: 'مكرونة شاورما لحمة',        price: 45,   img: 'mlahma.jpeg' },
+  { id: 34, name: 'مكرونة فراخ',               price: 45,   img: 'mferakh.jpeg' },
+  { id: 42, name: 'مكرونة شاورما فراخ',        price: 45,   img: 'shawerma_frakh.jpeg' },
+  // إضافات ومقرمشات
+  { id: 36, name: 'إضافة طحينة',               price: 10,   img: 'Tehena.jpeg' },
+  { id: 37, name: 'كانز V7',                   price: 15,   img: 'cansV7.jpeg' },
+  { id: 38, name: 'بيج شيبس بطعم الجبنة المتبلة', price: 10, img: 'chips_cheese.jpeg' },
+  { id: 39, name: 'بيج شيبس بطعم الكباب',       price: 10,   img: 'chips_kapap.jpeg' },
+  { id: 40, name: 'بيج شيبس بطعم الطماطم',      price: 10,   img: 'chips_tomato.jpeg' },
+  // مشروبات
+  { id: 43, name: 'بيبسي لتر ونص',              price: 40,   img: 'pepsi1.5.jpeg' },
+  { id: 44, name: 'بيبسي 2 لتر ونص',            price: 45,   img: 'pepsi2.5.jpeg' },
+  { id: 45, name: 'ازازة مياه 600 مللي',        price: 7,    img: 'water0.6.jpeg' },
+  { id: 46, name: 'ازازة مياه 1.5 لتر',         price: 12,   img: 'water1.5.jpeg' },
   // وجبات
   { id: 21, name: 'وجبة فراخ',               price: 99,   available: false, img: 'wferak.jpeg',   desc: 'رز بسمتي + ربع فرخة مشوية + مخلل' },
   { id: 22, name: 'وجبة كفتة',               price: 99,   available: false, img: 'Screenshot 2026-09-14 191805.png', desc: 'رز بسمتي + 5 كفتة + مخلل' },
@@ -154,6 +176,8 @@ function updateCartUI() {
   const totalEl = document.getElementById('cartTotal');
   const countEl = document.getElementById('cartCount');
   const giftNotice = document.getElementById('giftNotice');
+  const minimumOrderNotice = document.getElementById('minimumOrderNotice');
+  const confirmButton = document.querySelector('.cart-footer .confirm-btn');
 
   const totalQty = cart.reduce((sum, c) => sum + c.qty, 0);
   const totalPrice = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
@@ -166,7 +190,10 @@ function updateCartUI() {
   totalEl.textContent = formatPrice(totalPrice);
 
   // gift offer
-  giftNotice.style.display = totalPrice >= 100 ? 'flex' : 'none';
+  giftNotice.style.display = totalPrice >= 150 ? 'flex' : 'none';
+  minimumOrderNotice.style.display = totalPrice >= 70 ? 'none' : 'block';
+  minimumOrderNotice.textContent = `الحد الأدنى للتوصيل 70 جنيه، باقي ${formatPrice(70 - totalPrice)} جنيه`;
+  confirmButton.disabled = totalPrice < 70;
 
   if (cart.length === 0) {
     itemsContainer.innerHTML = '<p class="empty-cart">السلة فاضية دلوقتي</p>';
@@ -210,6 +237,11 @@ function openOrderPopup() {
     alert('السلة فاضية! أضف أصناف الأول.');
     return;
   }
+  const totalPrice = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
+  if (totalPrice < 70) {
+    alert('الحد الأدنى لطلب التوصيل 70 جنيه.');
+    return;
+  }
   document.getElementById('popupOverlay').classList.add('active');
 }
 
@@ -225,10 +257,16 @@ function sendOrder(e) {
 
   const name    = document.getElementById('clientName').value.trim();
   const phone   = document.getElementById('clientPhone').value.trim();
+  const area    = document.getElementById('deliveryArea').value;
   const address = document.getElementById('clientAddress').value.trim();
 
   const totalPrice = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
-  const hasGift    = totalPrice >= 100;
+  if (totalPrice < 70) {
+    alert('الحد الأدنى لطلب التوصيل 70 جنيه.');
+    closeOrderPopup();
+    return;
+  }
+  const hasGift    = totalPrice >= 150;
 
   // كل صنف في سطر منفصل: الاسم — الكمية × السعر = الإجمالي
   const orderLines = cart.map((c, i) =>
@@ -237,7 +275,7 @@ function sendOrder(e) {
   ).join('\n');
 
   const giftLine = hasGift
-    ? '\n🎁 *هدية مجانية:* ساندوتش شقلباظ (عرض المدارس)\n'
+    ? '\n🎁 *هدية مجانية:* كانز بيبسي\n'
     : '';
 
   const itemCount = cart.reduce((s, c) => s + c.qty, 0);
@@ -247,7 +285,8 @@ function sendOrder(e) {
     `━━━━━━━━━━━━━━━━━━\n` +
     `👤 *الاسم:* ${name}\n` +
     `📱 *الموبايل:* ${phone}\n` +
-    `📍 *العنوان:* ${address}\n` +
+    `📍 *المنطقة:* ${area}\n` +
+    `🏠 *العنوان:* ${address}\n` +
     `━━━━━━━━━━━━━━━━━━\n` +
     `🧾 *تفاصيل الطلب (${itemCount} صنف):*\n` +
     `${orderLines}\n` +
@@ -377,6 +416,7 @@ document.addEventListener('keydown', e => {
 // INIT
 // ===========================
 renderMenu();
+updateCartUI();
 
 // scroll reveal للريفيوز
 const reviewObserver = new IntersectionObserver((entries) => {

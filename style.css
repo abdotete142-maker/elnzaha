@@ -405,6 +405,59 @@ header {
 
 .section-sub { color: var(--text-muted); font-size: 0.95rem; }
 
+.menu-section .section-header { margin-bottom: 28px; }
+
+.search-wrap {
+  width: min(100%, 560px);
+  margin: 0 auto 32px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(224,90,10,0.16);
+}
+
+.search-icon { color: var(--text-muted); flex: 0 0 auto; }
+
+.search-input {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 4px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-main);
+  font: inherit;
+  text-align: right;
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.search-clear {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.search-clear:hover { background: var(--surface2); color: var(--text-main); }
+
 /* decorative divider */
 .section-header::after {
   content: '';
@@ -797,6 +850,12 @@ header {
 
 .gift-notice i { font-size: 1rem; }
 
+.minimum-order-notice {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 .cart-total {
   font-size: 1rem;
   font-weight: 700;
@@ -842,6 +901,13 @@ header {
   box-shadow: 0 8px 28px rgba(224,90,10,0.5);
 }
 .confirm-btn:active { transform: translateY(0); }
+.confirm-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  animation: none;
+  box-shadow: none;
+}
+.confirm-btn:disabled:hover { transform: none; box-shadow: none; }
 
 /* ===========================
    ORDER POPUP
@@ -914,6 +980,7 @@ header {
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
   border: 1.5px solid var(--border);
   border-radius: 10px;
@@ -929,6 +996,7 @@ header {
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(224,90,10,0.15);
