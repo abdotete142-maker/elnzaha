@@ -18,14 +18,14 @@ const menuItems = [
   { id: 11, name: 'كفتة بالسلطة شامي',      price: 30,   img: 'kfino.webp' },
   { id: 12, name: 'كفتة بالسلطة سوري',      price: 30,   img: 'tortela.jpg' },
   // بانيه
-  { id: 13, name: 'بانيه فينو',              price: 20,   img: 'bane_shamy.jpg' },
+  { id: 13, name: 'بانيه فينو',              price: 20,   img: 'nagets.jpeg' },
   // برجر — بوكس واحد بس
-  { id: 16, name: 'برجر',                    price: 20,   img: 'burger.jpg' },
+  { id: 16, name: 'برجر',                    price: 20,   img: 'burger1.jpeg' },
   { id: 47, name: 'برجر دوبل بالشيدر',       price: 40,   img: 'burger_double.jpeg' },
   // الشألباظ
-  { id: 17, name: 'الشألباظ فينو',           price: 15,   img: 'shaqlapaz.jpeg' },
+  { id: 17, name: 'الشألباظ فينو',           price: 15,   img: 'shaqlpaz1.jpeg' },
   { id: 19, name: 'بطاطس سوري',              price: 20,   img: 'btates_sory.jpeg' },
-  { id: 26, name: 'بطاطس موتزريلا سوري',    price: 30,   img: 'modzrilla.jpg' },
+  { id: 26, name: 'بطاطس موتزريلا سوري',    price: 30,   img: 'mudzrilla_batates1.jpeg' },
   // مكرونة
   { id: 28, name: 'مكرونة سادة',               price: 15,   img: 'Msada.jpeg' },
   { id: 29, name: 'مكرونة بطاطس',              price: 25,   img: 'mpotato.jpeg' },
@@ -35,7 +35,7 @@ const menuItems = [
   { id: 41, name: 'مكرونة بشاورما اللحمة',     price: 45,   img: 'mlahma.jpeg' },
   { id: 34, name: 'مكرونة بشاورما الفراخ',     price: 45,   img: 'mferakh.jpeg' },
   // إضافات ومقرمشات
-  { id: 36, name: 'إضافة طحينة',               price: 10,   img: 'Tehena.jpeg' },
+  { id: 36, name: 'إضافة طحينة',               price: 10,   img: 'tehina1.jpeg' },
   { id: 37, name: 'كانز V7',                   price: 15,   img: 'cansV7.jpeg' },
   { id: 38, name: 'بيج شيبس بطعم الجبنة المتبلة', price: 10, img: 'chips_cheese.jpeg' },
   { id: 39, name: 'بيج شيبس بطعم الكباب',       price: 10,   img: 'chips_kapap.jpeg' },
