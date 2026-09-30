@@ -29,11 +29,11 @@ const menuItems = [
   // مكرونة
   { id: 28, name: 'مكرونة سادة',               price: 15,   img: 'Msada.jpeg' },
   { id: 29, name: 'مكرونة بطاطس',              price: 25,   img: 'mpotato.jpeg' },
-  { id: 30, name: 'مكرونة بالصوصات',           price: 25,   img: 'msoce.jpeg' },
+  { id: 30, name: 'مكرونة بطاطس بالصوص',       price: 25,   img: 'msoce.jpeg' },
   { id: 31, name: 'مكرونة كبدة',               price: 30,   img: 'mkepda.jpeg' },
   { id: 32, name: 'مكرونة سدق',                price: 35,   img: 'mseduq.jpeg' },
-  { id: 41, name: 'مكرونة شاورما لحمة',        price: 45,   img: 'mlahma.jpeg' },
-  { id: 34, name: 'مكرونة فراخ',               price: 45,   img: 'mferakh.jpeg' },
+  { id: 41, name: 'مكرونة بشاورما اللحمة',     price: 45,   img: 'mlahma.jpeg' },
+  { id: 34, name: 'مكرونة بشاورما الفراخ',     price: 45,   img: 'mferakh.jpeg' },
   // إضافات ومقرمشات
   { id: 36, name: 'إضافة طحينة',               price: 10,   img: 'Tehena.jpeg' },
   { id: 37, name: 'كانز V7',                   price: 15,   img: 'cansV7.jpeg' },
