@@ -12,7 +12,7 @@ const menuItems = [
   // شاورما
   { id: 7,  name: 'شاورما فينو',             price: 30,   img: 'shawerma_fino.jpeg' },
   { id: 9,  name: 'شاورما لحمة سوري',        price: 40,   img: 'IMG_8201_594_012510.jpg' },
-  { id: 23, name: 'شاورما فراخ',             price: 40,   img: 'shawerma_frakh.jpeg' },
+  { id: 23, name: 'سندوتش شاورما فراخ',      price: 40,   img: 'shawerma_frakh.jpeg' },
   // كفتة بالسلطة
   { id: 10, name: 'كفتة بالسلطة فينو',      price: 30,   img: 'shamy.webp' },
   { id: 11, name: 'كفتة بالسلطة شامي',      price: 30,   img: 'kfino.webp' },
@@ -32,10 +32,8 @@ const menuItems = [
   { id: 30, name: 'مكرونة بالصوصات',           price: 25,   img: 'msoce.jpeg' },
   { id: 31, name: 'مكرونة كبدة',               price: 30,   img: 'mkepda.jpeg' },
   { id: 32, name: 'مكرونة سدق',                price: 35,   img: 'mseduq.jpeg' },
-  { id: 33, name: 'مكرونة لحمة',               price: 45,   img: 'mlahma.jpeg' },
   { id: 41, name: 'مكرونة شاورما لحمة',        price: 45,   img: 'mlahma.jpeg' },
   { id: 34, name: 'مكرونة فراخ',               price: 45,   img: 'mferakh.jpeg' },
-  { id: 42, name: 'مكرونة شاورما فراخ',        price: 45,   img: 'shawerma_frakh.jpeg' },
   // إضافات ومقرمشات
   { id: 36, name: 'إضافة طحينة',               price: 10,   img: 'Tehena.jpeg' },
   { id: 37, name: 'كانز V7',                   price: 15,   img: 'cansV7.jpeg' },
