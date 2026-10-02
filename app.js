@@ -14,7 +14,7 @@ const menuItems = [
   { id: 9,  name: 'شاورما لحمة سوري',        price: 40,   img: 'IMG_8201_594_012510.jpg' },
   { id: 23, name: 'سندوتش شاورما فراخ',      price: 40,   img: 'shawerma_frakh.jpeg' },
   // كفتة بالسلطة
-  { id: 10, name: 'كفتة بالسلطة فينو',      price: 30,   img: 'shamy.webp' },
+  { id: 10, name: 'كفتة بالسلطة فينو',      price: 20,   img: 'shamy.webp' },
   { id: 11, name: 'كفتة بالسلطة شامي',      price: 30,   img: 'kfino.webp' },
   { id: 12, name: 'كفتة بالسلطة سوري',      price: 30,   img: 'tortela.jpg' },
   // بانيه
@@ -30,8 +30,8 @@ const menuItems = [
   { id: 28, name: 'مكرونة سادة',               price: 15,   img: 'Msada.jpeg' },
   { id: 29, name: 'مكرونة بطاطس',              price: 25,   img: 'mpotato.jpeg' },
   { id: 30, name: 'مكرونة بطاطس بالصوص',       price: 25,   img: 'msoce.jpeg' },
-  { id: 31, name: 'مكرونة كبدة',               price: 30,   img: 'mkepda.jpeg' },
-  { id: 32, name: 'مكرونة سدق',                price: 35,   img: 'mseduq.jpeg' },
+  { id: 31, name: 'مكرونة كبدة',               price: 35,   img: 'mkepda.jpeg' },
+  { id: 32, name: 'مكرونة سدق',                price: 40,   img: 'mseduq.jpeg' },
   { id: 41, name: 'مكرونة بشاورما اللحمة',     price: 45,   img: 'mlahma.jpeg' },
   { id: 34, name: 'مكرونة بشاورما الفراخ',     price: 45,   img: 'mferakh.jpeg' },
   // إضافات ومقرمشات
